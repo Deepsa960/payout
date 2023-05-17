@@ -7,7 +7,7 @@ function handleSubmit(event) {
   event.preventDefault();
   const form = event.target;
   const formData = new FormData(form);
-  axios.post("http://192.168.1.17:8000/auth/singhtek-user/login", formData, {
+  axios.post("https://vast-puce-colt-cap.cyclic.app/auth/singhtek-user/login", formData, {
       headers: {
         "Content-Type": "application/json",
       },

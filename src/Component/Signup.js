@@ -95,14 +95,15 @@ export default function Signup() {
     <div>
       <div className="container-fluid p-0">
         <div className="row m-0">
-          <div className="col-xl-7">
-            {/* <img
+          <div className="col-xl-5 col-md-5">
+            <img
               className="bg-img-cover bg-center img-fluid"
               src={Signupk}
               alt="looginpage"
-            /> */}
+            />
           </div>
-          <div className="col-xl-5 p-0">
+          
+          <div className="col-xl-7 col-md-7 p-0">
             <div className="login-card login-dark">
               <div>
                 <div>
@@ -135,7 +136,7 @@ export default function Signup() {
                             onChange={handleChange}
                           />
                         </div>
-                        <div className="col- md-6">
+                        <div className="col-md-6">
                           <input
                             className="form-control"
                             type="text"

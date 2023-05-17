@@ -16,9 +16,6 @@ function App() {
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
         <Route path="/Otp" element={<Otp/>} />
         <Route path="/Admin" element={<Admin/>} />
-
-
-
       </Routes>
     </div>
   );

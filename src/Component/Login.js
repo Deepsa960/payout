@@ -1,72 +1,37 @@
 import React from "react";
-import { useState } from "react";  
-import { Link , redirect } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Signupk from "../images/signup.png";
 import logo from "../images/dark-logo.png";
 
-function handleSubmit(event) {
-  event.preventDefault();
-  const form = event.target;
-  const formData = new FormData(form);
-  axios
-    .post(
-      "https://stekpayout.onrender.com/auth/singhtek-user/login",
-      formData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
 export default function Login() {
-  function Login() {
-    const Login = () => {
-      const [loggedIn, setLoggedIn] = useState(false);
-
-      const handleLogin = async () => {
-        try {
-          // Make an API call to verify the login credentials
-          const response = await fetch(
-            "https://stekpayout.onrender.com/auth/singhtek-user/login",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                username: "your_username",
-                password: "your_password",
-              }),
-            }
-          );
-
-          if (response.ok) {
-            setLoggedIn(true);
-          } else {
-            // Handle login error, show error message, etc.
-            console.log("Login failed");
-          }
-        } catch (error) {
-          // Handle network error, API failure, etc.
-          console.log("An error occurred:", error);
+  const navigate = useNavigate();
+  //const [loggedIn, setLoggedIn] = useState(false);
+  function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    axios
+      .post(
+        "https://stekpayout.onrender.com/auth/singhtek-user/login",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      };
-
-      if (loggedIn === true ) {
-        ///this
-        // this not working
-        return redirect("/Admin");
-      }
-    };
+      )
+      .then((res) => {
+        if (res.status == 201) {
+          navigate("/Admin");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
   return (
     <div>
       <div className="container-fluid">
@@ -89,7 +54,6 @@ export default function Login() {
                       alt="loogindfdpage"
                       width={150}
                     />
-                    
                   </a>
                 </div>
                 <div className="login-main">
@@ -102,7 +66,6 @@ export default function Login() {
                         className="form-control"
                         type="text"
                         required
-                        placeholder
                         name="username"
                       />
                     </div>
@@ -114,7 +77,6 @@ export default function Login() {
                           type="password"
                           name="password"
                           required
-                          placeholder=" "
                         />
                         <div className="show-hide">
                           <span className="show"> </span>

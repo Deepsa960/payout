@@ -3,25 +3,70 @@ import axios from "axios";
 import Signupk from "../images/signup.png";
 import { Link } from "react-router-dom";
 import logo from "../images/logo 1.pdf";
+
 function handleSubmit(event) {
   event.preventDefault();
   const form = event.target;
   const formData = new FormData(form);
-  axios.post("https://vast-puce-colt-cap.cyclic.app/auth/singhtek-user/login", formData, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+  axios.post(
+      "https://stekpayout.onrender.com/auth/singhtek-user/login",
+      formData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
     .then((res) => {
       console.log(res);
     })
     .catch((err) => {
       console.log(err);
     });
+
+
+
+    
 }
 export default function Login() {
+     function Login() {
+    const Login = () => {
+      const [loggedIn, setLoggedIn] = useState(false);
+    
+      const  handleLogin = async () => {
+        try {
+          // Make an API call to verify the login credentials
+          const response = await fetch('https://stekpayout.onrender.com/auth/singhtek-user/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              username: 'your_username',
+              password: 'your_password',
+            }),
+          });
+    
+          if (response.ok) {
+            setLoggedIn(true);
+          } else {
+            // Handle login error, show error message, etc.
+            console.log('Login failed');
+          }
+        } catch (error) {
+          // Handle network error, API failure, etc.
+          console.log('An error occurred:', error);
+        }
+      };
+    
+      if (loggedIn) {
+        return <Redirect to="/Admin" />;
+      }
+    }
+     }
   return (
-    <div className="container-fluid">
+    <div>
+<div className="container-fluid">
       <div className="row">
         <div className="col-xl-5">
           <img
@@ -93,9 +138,17 @@ export default function Login() {
                       <button
                         className="btn btn-primary btn-block w-100"
                         type="submit"
+                      
+                       
                       >
                         Sign in
                       </button>
+                      {/* <Link
+                        to="/Admin"
+                        className="btn btn-primary btn-block w-100"
+                      >
+                        Sign in
+                      </Link> */}
                     </div>
                   </div>
                   {/* <h6 class="text-muted mt-4 or">Or Sign in with</h6> */}
@@ -118,5 +171,7 @@ export default function Login() {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 }

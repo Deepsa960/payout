@@ -75,7 +75,7 @@ export default function Signup() {
     const config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://192.168.1.17:8000/singhtek-users",
+      url: "https://stekpayout.onrender.com/singhtek-users",
       headers: {
         "Content-Type": 'multipart/form-data',
       },
@@ -83,7 +83,7 @@ export default function Signup() {
     };
 
     axios
-      .request(config)
+.request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
       })

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Signupk from "../images/signup.png";
+import logo from "../images/dark-logo.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -77,13 +78,13 @@ export default function Signup() {
       maxBodyLength: Infinity,
       url: "https://stekpayout.onrender.com/singhtek-users",
       headers: {
-        "Content-Type": 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
       data: formData,
     };
 
     axios
-.request(config)
+      .request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
       })
@@ -102,7 +103,7 @@ export default function Signup() {
               alt="looginpage"
             />
           </div>
-          
+
           <div className="col-xl-7 col-md-7 p-0">
             <div className="login-card login-dark">
               <div>
@@ -110,8 +111,9 @@ export default function Signup() {
                   <a className="logo text-start" href="index.html">
                     <img
                       className="img-fluid for-light"
-                      src="../assets/images/logo/logo.png"
+                      src={logo}
                       alt="looginpage"
+                      width="150"
                     />
                   </a>
                 </div>

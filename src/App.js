@@ -6,6 +6,7 @@ import Login from "./Component/Login";
 import ForgotPassword from "./Component/ForgotPassword";
 import Otp from "./Component/Otp";
 import Admin from "./Component/Admin";
+import Marchant from "./Component/Marchant";
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,10 @@ function App() {
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
         <Route path="/Otp" element={<Otp />} />
         <Route path="/Admin" element={<Admin />} />
+<<<<<<< HEAD
+=======
+        <Route path="/Marchant" element={<Marchant/>} />
+>>>>>>> c610c96e (admin dasboard update)
       </Routes>
     </div>
   );

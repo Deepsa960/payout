@@ -7,6 +7,7 @@ import logo from "../images/dark-logo.png";
 import Alert from "@mui/material/Alert";
 import { LoadingButton } from "@mui/lab";
 export default function Login() {
+<<<<<<< HEAD
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLodingIn] = useState(false);
@@ -35,6 +36,10 @@ export default function Login() {
         setLodingIn(false);
         setLoggedIn(true);
       });
+=======
+  function Login() {
+   
+>>>>>>> c610c96e (admin dasboard update)
   }
 
   return (

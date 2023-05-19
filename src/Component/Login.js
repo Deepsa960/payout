@@ -1,14 +1,17 @@
-import React from "react";
+import * as React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Signupk from "../images/signup.png";
 import logo from "../images/dark-logo.png";
-
+import Alert from "@mui/material/Alert";
+import { LoadingButton } from "@mui/lab";
 export default function Login() {
   const navigate = useNavigate();
-  //const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLodingIn] = useState(false);
   function handleSubmit(event) {
+    setLodingIn(true);
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
@@ -23,12 +26,14 @@ export default function Login() {
         }
       )
       .then((res) => {
-        if (res.status == 201) {
+        if (res.status === 201) {
+          setLodingIn(false);
           navigate("/Admin");
         }
       })
       .catch((err) => {
-        console.log(err);
+        setLodingIn(false);
+        setLoggedIn(true);
       });
   }
 
@@ -67,6 +72,7 @@ export default function Login() {
                         type="text"
                         required
                         name="username"
+                        onChange={() => setLoggedIn(false)}
                       />
                     </div>
                     <div className="form-group">
@@ -77,6 +83,7 @@ export default function Login() {
                           type="password"
                           name="password"
                           required
+                          onChange={() => setLoggedIn(false)}
                         />
                         <div className="show-hide">
                           <span className="show"> </span>
@@ -92,34 +99,35 @@ export default function Login() {
                       </div>
                       {/* <a className="link" href="forget-password.html">
                     </a> */}
-
                       <Link to="/ForgotPassword" className="link ctm-btn">
                         Forgot password?
                       </Link>
                       <div className="text-end mt-3">
-                        <button
+                        <LoadingButton
                           className="btn btn-primary btn-block w-100"
                           type="submit"
+                          variant="contained"
+                          color="primary"
+                          loading={loading}
                         >
-                          Sign in
-                        </button>
-                        {/* <Link
-                        to="/Admin"
-                        className="btn btn-primary btn-block w-100"
-                      >
-                        Sign in
-                      </Link> */}
+                          Sign In
+                        </LoadingButton>
                       </div>
+                      <br></br>
+                      {loggedIn === true ? (
+                        <Alert
+                          severity="error"
+                          closeText="close
+                        "
+                        >
+                          This is an error alert — check it out!
+                        </Alert>
+                      ) : (
+                        ""
+                      )}
                     </div>
-                    {/* <h6 class="text-muted mt-4 or">Or Sign in with</h6> */}
-                    {/* <div class="social mt-4">
-                    <div class="btn-showcase"><a class="btn btn-light" href="https://www.linkedin.com/login" target="_blank"><i class="txt-linkedin" data-feather="linkedin"></i> LinkedIn </a><a class="btn btn-light" href="https://twitter.com/login?lang=en" target="_blank"><i class="txt-twitter" data-feather="twitter"></i>twitter</a><a class="btn btn-light" href="https://www.facebook.com/" target="_blank"><i class="txt-fb" data-feather="facebook"></i>facebook</a></div>
-                  </div> */}
                     <p className="mt-4 mb-0 text-center">
                       Don't have account?
-                      {/* <a className="ms-2" href="sign-up.html">
-                      Create Account
-                    </a> */}
                       <Link to="/Signup" className="ms-2 ctm-btn">
                         Create Account
                       </Link>
